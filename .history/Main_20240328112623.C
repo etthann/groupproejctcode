@@ -14,7 +14,8 @@ int get_rows(char file[1000]) {
     int count = 0;
     char buffer[1000];
     input = fopen(file, "r");
-    while (fgets(buffer, sizeof(buffer), input)) {
+    while (fgets(buffer, sizeof(buffer), input))
+    {
         count += 1;
     }
     fclose(input);
