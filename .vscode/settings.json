@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.embeddedhtml": "html",
-        "Main.C": "cpp"
+        "Main.C": "cpp",
+        "tempCodeRunnerFile.C": "cpp"
     }
 }
