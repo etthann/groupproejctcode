@@ -1,0 +1,3 @@
+Hottest Ever Recorded Month: Year = 1761, Month = 0, Temperature = 19.021000
+Coldest Ever Recorded Month: Year = 1768, Month = 0, Temperature = -2.080000
+aaaa

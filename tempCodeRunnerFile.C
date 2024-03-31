@@ -1,5 +1,2 @@
-
-    //Print out the values in the 3D array
-    for (int r = 0; r < rows; r++) {
-        for (int c = 0; c < columns; c++) {
-            printf("%s 
+    printf("Hottest Month: Year = %.0f, Month = %.0f, Temperature = %f\n", listHottestColdest[0][0], listHottestColdest[0][1], listHottestColdest[0][2]);
+    printf("Coldest Month: Year = %.0f, Month = %.0f, Temperature = %f\n", listHottestColdest[1][0], listHottestColdest[1][1], listHottestColdest[1][2]);
