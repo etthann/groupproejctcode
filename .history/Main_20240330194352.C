@@ -271,9 +271,11 @@ float averageLandTemperatureEachMonth(char*** data, int rows, int columns, int t
         int year = atoi(token);
         token = strtok(NULL,"-");
         int month = atoi(token);
-        if (year >= 1900 && month == targetMonth) {
+        if (year >= 1900) {
+            if (month == targetMonth) {
                 totalTemp += atof(data[r][1]);
                 counter++;
+            }
         }
     }
     averageLandTemp = (counter > 0) ? totalTemp / counter : 0;
@@ -313,8 +315,8 @@ void storeAnswerToFile (char*** data, int rows, int columns, const char* fileNam
     } if (strcmp(fileName,"q3")==0) {
         char month [12][10] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
         file = fopen(fullPath,"w");
-        for (int i = 0; i < 12; i++) {
-            float averageTemp = averageLandTemperatureEachMonth(data, rows, columns, i + startYear);
+        for (int i = 0; i < totalYear + 1; i++) {
+            float averageTemp = averageLandTemperatureEachMonth(data, rows, columns, month);
             fprintf(file, "%s, %f\n", month[i], averageTemp);
         }  
     }

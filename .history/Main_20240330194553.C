@@ -272,8 +272,10 @@ float averageLandTemperatureEachMonth(char*** data, int rows, int columns, int t
         token = strtok(NULL,"-");
         int month = atoi(token);
         if (year >= 1900 && month == targetMonth) {
+            if (month == targetMonth) {
                 totalTemp += atof(data[r][1]);
                 counter++;
+            }
         }
     }
     averageLandTemp = (counter > 0) ? totalTemp / counter : 0;

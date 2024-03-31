@@ -20,9 +20,8 @@ const char fileName[23] = "GlobalTemperatures.csv";
 int getTotalRowAndColumn(int *columns);
 void storeCSVData(char*** data, int rows, int cols);
 float averageLandTemperatureEachYear(char*** data, int rows, int cols, int targetYear);
-void storeAnswerToFile(char*** data, int rows, int columns, const char* fileName, int startYear, int endYear);
+void storeAnswerToFile(char*** data, int rows, int columns, char* fileName, int startYear, int endYear);
 float averageLandTemperatureEachCentury(char*** data, int rows, int cols, int startYear, int endYear);
-float averageLandTemperatureEachMonth(char*** data, int rows, int columns, int targetMonth);
 
 // Main funtion
 int main() {
@@ -72,7 +71,7 @@ int main() {
     storeAnswerToFile(data,rows,columns,"q2",2000,2015);
 
     // Question 3:
-    storeAnswerToFile(data,rows,columns,"q3",1,1);
+    for (int i = 0; i < 12)
 
 
 
@@ -265,15 +264,18 @@ float averageLandTemperatureEachMonth(char*** data, int rows, int columns, int t
     int counter = 0;
     float totalTemp = 0;
     float averageLandTemp = 0;
+    int monthCount = 0;
     for (int r = 0; r < rows; r++) {
         char* date = data[r][0];
         char *token = strtok(date,"-");
         int year = atoi(token);
         token = strtok(NULL,"-");
         int month = atoi(token);
-        if (year >= 1900 && month == targetMonth) {
+        if (year >= 1900) {
+            if (month == targetMonth) {
                 totalTemp += atof(data[r][1]);
                 counter++;
+            }
         }
     }
     averageLandTemp = (counter > 0) ? totalTemp / counter : 0;
@@ -290,7 +292,7 @@ float averageLandTemperatureEachMonth(char*** data, int rows, int columns, int t
  * @param
  * @param
 */
-void storeAnswerToFile (char*** data, int rows, int columns, const char* fileName, int startYear, int endYear) {
+void storeAnswerToFile (char*** data, int rows, int columns, char* fileName, int startYear, int endYear) {
     char folder [] = "answers/";
     char fullPath[100];
     strcpy(fullPath,folder);
@@ -304,19 +306,10 @@ void storeAnswerToFile (char*** data, int rows, int columns, const char* fileNam
             float averageTemp = averageLandTemperatureEachYear(data, rows, columns, startYear + i);
             fprintf(file, "%d, %f\n", startYear + i, averageTemp);
         }   
-
     } if (strcmp(fileName, "q2") == 0) {
         file = fopen(fullPath,"a");
         float averageTemp = averageLandTemperatureEachCentury(data,rows,columns,startYear,endYear);
-        fprintf(file,"%dth Century, %f\n",startYear/100,averageTemp);
-
-    } if (strcmp(fileName,"q3")==0) {
-        char month [12][10] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
-        file = fopen(fullPath,"w");
-        for (int i = 0; i < 12; i++) {
-            float averageTemp = averageLandTemperatureEachMonth(data, rows, columns, i + startYear);
-            fprintf(file, "%s, %f\n", month[i], averageTemp);
-        }  
+        fprintf(file,"%dth Century,%f\n",startYear/100,averageTemp);
     }
     fclose(file);
 }
