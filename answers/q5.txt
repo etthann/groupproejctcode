@@ -1,0 +1,2 @@
+The hottest year is 2015, with a temperature of 9.831000
+The coldest year is 1768, with a temperature of 6.781332

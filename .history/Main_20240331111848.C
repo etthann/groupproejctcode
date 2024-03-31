@@ -414,7 +414,7 @@ void writeColumnsToFile(char*** data, int rows, int columns, const char* fileNam
  * @param
 */
 void storeAnswerToFile (char*** data, int rows, int columns, const char* fileName, int startYear, int endYear) {
-    char folder [] = "answers/";
+    char folder [] = "answers/txtFile/";
     char fullPath[100];
     strcpy(fullPath,folder);
     strcat(fullPath,fileName);

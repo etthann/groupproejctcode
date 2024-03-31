@@ -272,7 +272,7 @@ float averageLandTemperatureEachCentury(char*** data, int rows, int columns, int
 }
 
 
-// Code below is Question 3
+
 /**
  * This function is used to answer question 3
  * Function that calculates the average land temperature each month
@@ -309,7 +309,7 @@ float averageLandTemperatureEachMonth(char*** data, int rows, int columns, int t
 
 
 
-// Code below is Question 4
+// Question 4
 void hottestColdestMonth(char*** data, int row, int columns, float **listHottestColdest) {
     listHottestColdest[0][2] = -10000; // Hottest temperature
     listHottestColdest[1][2] = 10000;  // Coldest temperature
@@ -343,7 +343,9 @@ void hottestColdestMonth(char*** data, int row, int columns, float **listHottest
 
 
 
-// Code below is Question 5 
+// Question 5
+// >>>Based on your answer in question 1, what year was the hottest and what year was the coldest?<<<
+// 
 void hottestColdestYear() {
     FILE *q1Values = fopen("answers/q1.txt", "r");
     if (q1Values == NULL) {
@@ -375,6 +377,7 @@ void hottestColdestYear() {
 }
 
 
+//  Question 7 REQUIRE Q2
 
 
 // Question 8

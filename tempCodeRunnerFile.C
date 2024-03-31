@@ -1,2 +1,0 @@
-    printf("Hottest Month: Year = %.0f, Month = %.0f, Temperature = %f\n", listHottestColdest[0][0], listHottestColdest[0][1], listHottestColdest[0][2]);
-    printf("Coldest Month: Year = %.0f, Month = %.0f, Temperature = %f\n", listHottestColdest[1][0], listHottestColdest[1][1], listHottestColdest[1][2]);

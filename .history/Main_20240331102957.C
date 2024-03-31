@@ -22,8 +22,7 @@ void storeCSVData(char*** data, int rows, int cols);
 float averageLandTemperatureEachYear(char*** data, int rows, int cols, int targetYear);
 void storeAnswerToFile(char*** data, int rows, int columns, const char* fileName, int startYear, int endYear);
 float averageLandTemperatureEachCentury(char*** data, int rows, int cols, int startYear, int endYear);
-float averageLandTemperatureEachMonth(char*** data, int rows, int cols, int targetMonth);
-void hottestColdestYear();
+
 
 // Main funtion
 int main() {
@@ -53,11 +52,12 @@ int main() {
     //Store the CSV data into the 3D data array
     storeCSVData(data, rows, columns);
 
+    
+
 
     //Add new functions below here
     // Question 1:
     storeAnswerToFile(data, rows, columns,"q1", 1760, 2015);
-
 
 
     //Question 2:
@@ -66,14 +66,8 @@ int main() {
     storeAnswerToFile(data,rows,columns,"q2",1900,1999);
     storeAnswerToFile(data,rows,columns,"q2",2000,2015);
 
-    //Question 3:
-    storeAnswerToFile(data,rows,columns,"q3",1,1);
-
-    //Question 4:
-    storeAnswerToFile(data,rows,columns,"q4",1,1);
-
     // Question 5
-    hottestColdestYear();
+
 
 
     // Free up allocated memory using the free function
@@ -200,10 +194,10 @@ float averageLandTemperatureEachYear(char*** data, int row, int col, int targetY
     // Go through the entire data array
     for (int r = 0; r < row; r++) {
         // Get the date from the data array
-        char dateCopy[100];  // Adjust the size as needed
-        strcpy(dateCopy, data[r][0]);
+        char* date = data[r][0];
+
         //Get the first value that is seperated by the "-" delimeter
-        char *token = strtok(dateCopy, "-");
+        char *token = strtok(date, "-");
         //Chagne the token value to an integer and store it's value into the year variable
         int year = atoi(token);
         // If the year is equal to the year we want to find
@@ -255,9 +249,8 @@ float averageLandTemperatureEachCentury(char*** data, int rows, int columns, int
     float averageLandTemp = 0.0;
 
     for (int r = 0; r < rows; r++) {
-        char dateCopy[100];  // Adjust the size as needed
-        strcpy(dateCopy, data[r][0]);
-        char *token = strtok(dateCopy, "-");
+        char* date = data[r][0];
+        char *token = strtok(date, "-");
         int year = atoi(token);
         if (year >= startYear && year <= endYear) {
             float yearlyTemp = averageLandTemperatureEachYear(data, rows, columns, year);
@@ -272,7 +265,7 @@ float averageLandTemperatureEachCentury(char*** data, int rows, int columns, int
 }
 
 
-// Code below is Question 3
+
 /**
  * This function is used to answer question 3
  * Function that calculates the average land temperature each month
@@ -284,46 +277,43 @@ float averageLandTemperatureEachCentury(char*** data, int rows, int columns, int
  * 
 */
 float averageLandTemperatureEachMonth(char*** data, int rows, int columns, int targetMonth) {
-    float totalTemp = 0.0;
-    int count = 0;
+    // float totalTemp = 0.0;
+    // int count = 0;
 
-    for (int r = 0; r < rows; r++) {
-        char dateCopy[100];
-        strcpy(dateCopy, data[r][0]);
-        char *token = strtok(dateCopy, "-");
-        token = strtok(NULL,"-");
-        int month = atoi(token);
-        if (month == targetMonth) {
-            for (int c = 1; c < columns; c++) {
-                float temp = atof(data[r][1]);
-                if (temp != 0.0) {
-                    totalTemp += temp;
-                    count++;
-                }
-            }
-        }
-    }
-    float averageTemp = (count > 0) ? totalTemp / count : -1;
-    return averageTemp;
+    // for (int r = 0; r < rows; r++) {
+    //     char* date = data[r][0];
+    //     char *token = strtok(date, "-");
+    //     int month = atoi(token + 5);
+    //     if (month == targetMonth) {
+    //         for (int c = 1; c < columns; c++) {
+    //             float temp = atof(data[r][1]);
+    //             if (temp != 0.0) {
+    //                 totalTemp += temp;
+    //                 count++;
+    //             }
+    //         }
+    //     }
+    // }
+    // float averageTemp = (count > 0) ? totalTemp / count : -1;
+    return 0;
 }
 
 
 
-// Code below is Question 4
+// Question 4
 void hottestColdestMonth(char*** data, int row, int columns, float **listHottestColdest) {
     listHottestColdest[0][2] = -10000; // Hottest temperature
     listHottestColdest[1][2] = 10000;  // Coldest temperature
     float temp;
 
-    for (int r = 0; r < row; r++) {
-        char dateCopy[100];
-        strcpy(dateCopy, data[r][0]);
-        char *token = strtok(dateCopy, "-");
+    for (int i = 0; i < row; i++) {
+        char* date = data[i][0];
+        char *token = strtok(date, "-");
         float year = atof(token); 
 
-        token = strtok(NULL, "-");
+        token = strtok(NULL, "-"); // Use NULL in first argument, "-" in second
         float month = atof(token);
-        temp = atof(data[r][1]);
+        temp = atof(data[i][1]);
             
         if (temp > listHottestColdest[0][2]){
             listHottestColdest[0][0] = year;
@@ -343,9 +333,11 @@ void hottestColdestMonth(char*** data, int row, int columns, float **listHottest
 
 
 
-// Code below is Question 5 
+// Question 5
+// >>>Based on your answer in question 1, what year was the hottest and what year was the coldest?<<<
+// 
 void hottestColdestYear() {
-    FILE *q1Values = fopen("answers/q1.txt", "r");
+    FILE *q1Values = fopen("GlobalTemperatures.cvs", "r");
     if (q1Values == NULL) {
         printf("File q1.txt cannot be opened."); 
     }
@@ -366,15 +358,29 @@ void hottestColdestYear() {
             lowYear = year;
         }
     }
+    printf("The hottest year is %d, with a temperature of %f\n", highYear, highTemp);
+    printf("The hottest year is %d, with a temperature of %f", lowYear, lowTemp);
 
     fclose(q1Values);
-    FILE *q5Values = fopen("answers/q5.txt","w");
-    fprintf(q5Values, "The hottest year is %d, with a temperature of %f\n", highYear, highTemp);
-    fprintf(q5Values, "The coldest year is %d, with a temperature of %f", lowYear, lowTemp);
-    fclose(q5Values);
 }
 
+// Quesiton 6
+// code for GNUPlot of q1
+/*
+#Graph Settings
+set terminal svg enhanced size 1000, 800
+set title 'Average Land Temperature Each Year'
+set xlabel 'Year'
+set ylabel 'Temperture (Celcius)'
+set xtics 25
+set grid
 
+#plots the 3 graphs from the imported files with different line types and a legend
+plot 'q1.txt' title 'Temp' with lp lt 1 dt 1 lw 1, 
+
+*/
+
+//  Question 7 REQUIRE Q2
 
 
 // Question 8
@@ -420,8 +426,6 @@ void storeAnswerToFile (char*** data, int rows, int columns, const char* fileNam
     strcat(fullPath,fileName);
     strcat(fullPath,".txt");
     int totalYear = endYear- startYear;
-    char month[12][10] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-
 
     if (strcmp(fileName, "q1") == 0) {
         file = fopen(fullPath,"w");
@@ -437,9 +441,9 @@ void storeAnswerToFile (char*** data, int rows, int columns, const char* fileNam
 
     }  if (strcmp(fileName, "q3") == 0) {
         file = fopen(fullPath,"w");
-       for (int i = 1; i < 13; i++) {
+        for (int i = 1; i < 13; i++) {
             float averageTemp = averageLandTemperatureEachMonth(data, rows, columns, i);
-            fprintf(file, "%s, %f\n", month[i-1], averageTemp);
+            fprintf(file, "%d, %f\n", i, averageTemp);
         }
     }  if (strcmp(fileName,"q4") == 0) {
         float** listHottestColdest = (float**)malloc(2 * sizeof(float*));
@@ -450,8 +454,8 @@ void storeAnswerToFile (char*** data, int rows, int columns, const char* fileNam
         hottestColdestMonth(data, rows, columns, listHottestColdest);
 
         file = fopen(fullPath,"w");
-        fprintf(file, "Hottest Ever Recorded Month: Year = %.0f, Month = %s, Temperature = %f\n", (int)listHottestColdest[0][0], month[(int)listHottestColdest[0][1]-1], listHottestColdest[0][2]);
-        fprintf(file, "Coldest Ever Recorded Month: Year = %.0f, Month = %s, Temperature = %f\n", (int)listHottestColdest[1][0], month[(int)listHottestColdest[1][1]-1], listHottestColdest[1][2]);
+        fprintf(file, "Hottest Ever Recorded Month: Year = %.0f, Month = %.0f, Temperature = %f\n", listHottestColdest[0][0], listHottestColdest[0][1], listHottestColdest[0][2]);
+        fprintf(file, "Coldest Ever Recorded Month: Year = %.0f, Month = %.0f, Temperature = %f\n", listHottestColdest[1][0], listHottestColdest[1][1], listHottestColdest[1][2]);
 
         for (int i = 0; i < 2; i++) {
             free(listHottestColdest[i]);

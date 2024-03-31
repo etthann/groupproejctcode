@@ -23,7 +23,6 @@ float averageLandTemperatureEachYear(char*** data, int rows, int cols, int targe
 void storeAnswerToFile(char*** data, int rows, int columns, const char* fileName, int startYear, int endYear);
 float averageLandTemperatureEachCentury(char*** data, int rows, int cols, int startYear, int endYear);
 float averageLandTemperatureEachMonth(char*** data, int rows, int cols, int targetMonth);
-void hottestColdestYear();
 
 // Main funtion
 int main() {
@@ -73,7 +72,7 @@ int main() {
     storeAnswerToFile(data,rows,columns,"q4",1,1);
 
     // Question 5
-    hottestColdestYear();
+
 
 
     // Free up allocated memory using the free function
@@ -272,7 +271,7 @@ float averageLandTemperatureEachCentury(char*** data, int rows, int columns, int
 }
 
 
-// Code below is Question 3
+
 /**
  * This function is used to answer question 3
  * Function that calculates the average land temperature each month
@@ -309,7 +308,7 @@ float averageLandTemperatureEachMonth(char*** data, int rows, int columns, int t
 
 
 
-// Code below is Question 4
+// Question 4
 void hottestColdestMonth(char*** data, int row, int columns, float **listHottestColdest) {
     listHottestColdest[0][2] = -10000; // Hottest temperature
     listHottestColdest[1][2] = 10000;  // Coldest temperature
@@ -343,9 +342,11 @@ void hottestColdestMonth(char*** data, int row, int columns, float **listHottest
 
 
 
-// Code below is Question 5 
+// Question 5
+// >>>Based on your answer in question 1, what year was the hottest and what year was the coldest?<<<
+// 
 void hottestColdestYear() {
-    FILE *q1Values = fopen("answers/q1.txt", "r");
+    FILE *q1Values = fopen("q1.txt", "r");
     if (q1Values == NULL) {
         printf("File q1.txt cannot be opened."); 
     }
@@ -366,15 +367,29 @@ void hottestColdestYear() {
             lowYear = year;
         }
     }
+    fprintf("The hottest year is %d, with a temperature of %f\n", highYear, highTemp);
+    fprintf("The hottest year is %d, with a temperature of %f", lowYear, lowTemp);
 
     fclose(q1Values);
-    FILE *q5Values = fopen("answers/q5.txt","w");
-    fprintf(q5Values, "The hottest year is %d, with a temperature of %f\n", highYear, highTemp);
-    fprintf(q5Values, "The coldest year is %d, with a temperature of %f", lowYear, lowTemp);
-    fclose(q5Values);
 }
 
+// Quesiton 6
+// code for GNUPlot of q1
+/*
+#Graph Settings
+set terminal svg enhanced size 1000, 800
+set title 'Average Land Temperature Each Year'
+set xlabel 'Year'
+set ylabel 'Temperture (Celcius)'
+set xtics 25
+set grid
 
+#plots the 3 graphs from the imported files with different line types and a legend
+plot 'q1.txt' title 'Temp' with lp lt 1 dt 1 lw 1, 
+
+*/
+
+//  Question 7 REQUIRE Q2
 
 
 // Question 8

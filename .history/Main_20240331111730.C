@@ -343,7 +343,8 @@ void hottestColdestMonth(char*** data, int row, int columns, float **listHottest
 
 
 
-// Code below is Question 5 
+// Question 5
+// 
 void hottestColdestYear() {
     FILE *q1Values = fopen("answers/q1.txt", "r");
     if (q1Values == NULL) {
@@ -375,6 +376,7 @@ void hottestColdestYear() {
 }
 
 
+//  Question 7 REQUIRE Q2
 
 
 // Question 8
