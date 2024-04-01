@@ -1,5 +1,5 @@
 #Graph Settings
-#set dimension o
+#sedd dimension of 
 set terminal png enhanced size 1000, 800
 set output 'gnuplot/q6.png'
 set title 'Average Land Temperature Each Year'

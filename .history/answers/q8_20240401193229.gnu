@@ -12,4 +12,4 @@ set xtics 20
 # Plot the data with different colors for different lines
 plot 'q8.txt' using ($1 >= 1850 && $1 < 2015 ? $1 : 1/0):2 title "Land Average Temperature" with lines lw 3 lc 1, \
      'q8.txt' using ($1 >= 1850 && $1 <= 2015 ? $1 : 1/0):3 title "Land Max Temperature" with lines lw 3 lc 2, \
-     'q8.txt' using ($1 >= 1850 && $1 < 2015 ? $1 : 1/0):4 title "Land Minimum Temperature" with lines lw 3 lc 3
+     'q8.txt' using ($1 >= 1850 && $1 < 2015 ? $1 : 1/0):4 title "Land Minimum Temperature" with lines lw 3 lc 3'  

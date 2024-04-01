@@ -9,4 +9,4 @@ set ylabel "Temperatures (Celcius)"
 
 # Plot the data with different colors for different centuries
 plot 'q1.txt' using ($1 >= 1800 && $1 < 1900 ? $1 : 1/0):2 title "19th Century" with lines lw 3 lc 1, \
-     'q1.txt' using ($1 >= 1900 && $1 <= 2000 ? $1 : 1/0):2 title "20th Century" with lines lw 3 lc 2    
+     'q1.txt' using ($1 >= 1900 && $1 <= 2000 ? $1 : 1/0):2 title "20th Century" with lines lw 3 2    
