@@ -4,11 +4,9 @@ set terminal png enhanced size 1000, 800
 set output 'gnuplot/q7.png'
 
 # Set title and labels
-# Set title of graph
+#
 set title "Yearly Average Temperatures Between 19th and 20th Centuries"
-# Set x-axis heading
 set xlabel "Years"
-# Set y-axis heading
 set ylabel "Temperatures (Celcius)"
 
 # Plot the data with different colors for different centuries

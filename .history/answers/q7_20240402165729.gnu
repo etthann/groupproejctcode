@@ -8,7 +8,6 @@ set output 'gnuplot/q7.png'
 set title "Yearly Average Temperatures Between 19th and 20th Centuries"
 # Set x-axis heading
 set xlabel "Years"
-# Set y-axis heading
 set ylabel "Temperatures (Celcius)"
 
 # Plot the data with different colors for different centuries

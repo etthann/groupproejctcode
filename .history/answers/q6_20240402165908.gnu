@@ -13,5 +13,5 @@ set xtics 25
 
 
 #plots the 3 graphs from the imported files with different line types and a legend
-# Using column 1 as x-axis and column 2 as y-axis with linepoint graph and a legend title
+#using column 1 as x-axis and column 2 as y-axis with linepoint graph and a legend title
 plot 'q1.txt' using 1:2 title 'Temperature' with linespoints
