@@ -405,7 +405,7 @@ void hottestColdestYear() {
 }
 
 
-//For Q.8 find the average for all of them
+//For Q.8 find the average for all of em 
 //Right now it just prints everytnig into the q8.txt not the average
 
 // Question 8
@@ -605,10 +605,7 @@ void storeAnswerToFile (char*** data, int rows, int columns, const char* fileNam
     //2D array called month which holds all the month's names
     char month[12][10] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
-
-
-    //Store the answers from question 1 into the q1.txt file
-
+    //Store the answers from question 1 into the q1 file
     //If fileName == q1
     if (strcmp(fileName, "q1") == 0) {
         // Open the file and write to the file
@@ -621,9 +618,7 @@ void storeAnswerToFile (char*** data, int rows, int columns, const char* fileNam
             fprintf(file, "%d, %f\n", startYear + i, averageTemp);
         }   
 
-
-
-    //Store the answers from question 2 into the q2.txt file
+        //Store the answers from question 1 into the q1 file
 
     //If fileName == q2
     } if (strcmp(fileName, "q2") == 0) {
@@ -634,10 +629,6 @@ void storeAnswerToFile (char*** data, int rows, int columns, const char* fileNam
         float averageTemp = averageLandTemperatureEachCentury(data,rows,columns,startYear,endYear);
         // Print the value and the century it's in into the file
         fprintf(file,"%dth Century, %f\n",(startYear/100) + 1,averageTemp);
-
-
-
-    //Store the answers from question 3 into the q3.txt file
 
     //If fileName == q3
     }  if (strcmp(fileName, "q3") == 0) {
@@ -651,10 +642,6 @@ void storeAnswerToFile (char*** data, int rows, int columns, const char* fileNam
             fprintf(file, "%s, %f\n", month[i-1], averageTemp);
         }
 
-
-
-    //Store the answers from question 4 into the q4.txt file
-
     //If fileName == q4
     }  if (strcmp(fileName,"q4") == 0) {
 
@@ -664,9 +651,7 @@ void storeAnswerToFile (char*** data, int rows, int columns, const char* fileNam
             listHottestColdest[i] = (float*)malloc(3 * sizeof(float));
         }
         
-
         // Call the hottestColdestMonth function
-        // This allows it to modify the listHottestColdest array which we store the hottest and coldest month with it's year and temperature
         hottestColdestMonth(data, rows, columns, listHottestColdest);
         
         //Open up the file we are trying to write to
@@ -681,11 +666,6 @@ void storeAnswerToFile (char*** data, int rows, int columns, const char* fileNam
             free(listHottestColdest[i]);
         }
         free(listHottestColdest);
-
-
-
-
-    //Store the answers from question 11 into the q11.txt file
 
         //If fileName == q11
      } if (strcmp(fileName, "q11") == 0) {

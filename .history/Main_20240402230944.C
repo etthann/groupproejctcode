@@ -405,7 +405,7 @@ void hottestColdestYear() {
 }
 
 
-//For Q.8 find the average for all of them
+//For Q.8 find the average for all of em 
 //Right now it just prints everytnig into the q8.txt not the average
 
 // Question 8
@@ -607,7 +607,7 @@ void storeAnswerToFile (char*** data, int rows, int columns, const char* fileNam
 
 
 
-    //Store the answers from question 1 into the q1.txt file
+    //Store the answers from question 1 into the q1 file
 
     //If fileName == q1
     if (strcmp(fileName, "q1") == 0) {
@@ -664,9 +664,7 @@ void storeAnswerToFile (char*** data, int rows, int columns, const char* fileNam
             listHottestColdest[i] = (float*)malloc(3 * sizeof(float));
         }
         
-
         // Call the hottestColdestMonth function
-        // This allows it to modify the listHottestColdest array which we store the hottest and coldest month with it's year and temperature
         hottestColdestMonth(data, rows, columns, listHottestColdest);
         
         //Open up the file we are trying to write to

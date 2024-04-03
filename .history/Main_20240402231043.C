@@ -664,9 +664,8 @@ void storeAnswerToFile (char*** data, int rows, int columns, const char* fileNam
             listHottestColdest[i] = (float*)malloc(3 * sizeof(float));
         }
         
-
+        
         // Call the hottestColdestMonth function
-        // This allows it to modify the listHottestColdest array which we store the hottest and coldest month with it's year and temperature
         hottestColdestMonth(data, rows, columns, listHottestColdest);
         
         //Open up the file we are trying to write to

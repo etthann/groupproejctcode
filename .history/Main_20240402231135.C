@@ -666,7 +666,7 @@ void storeAnswerToFile (char*** data, int rows, int columns, const char* fileNam
         
 
         // Call the hottestColdestMonth function
-        // This allows it to modify the listHottestColdest array which we store the hottest and coldest month with it's year and temperature
+        // This allows it to modify the listHottestColdest array which we will then use it's values to print out the hottest and coldest month with it's year and temperature
         hottestColdestMonth(data, rows, columns, listHottestColdest);
         
         //Open up the file we are trying to write to
